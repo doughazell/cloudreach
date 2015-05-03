@@ -1,0 +1,11 @@
+<div class="addresses">
+  <%=h address.first_line %>,
+  <%=h address.other_lines %>,
+  <%=h address.town %>,
+  <%=h address.postcode %>
+  
+  <div class="actions">
+    <%= link_to "Destroy", address, method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+  
+</div>

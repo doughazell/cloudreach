@@ -1,0 +1,8 @@
+<div class="telephone_number">
+  <strong><%=h telephone_number.label %> </strong><br />
+  <%=h telephone_number.number %>
+  
+  <div class="actions">
+    <%= link_to "Destroy", telephone_number, method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+</div>

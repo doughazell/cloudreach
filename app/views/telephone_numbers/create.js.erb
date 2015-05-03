@@ -1,0 +1,17 @@
+
+$("#telephone_numbers_count").html("<%= pluralize(@telephone_number.contact.telephone_numbers.count, 'Telephone Number') %>");
+$("#telephone_numbers").append("<%= escape_javascript(render(:partial => @telephone_number)) %>");
+
+<%
+=begin %>
+------------------------------------------------------------------------------------------------
+$("#new_email").before('<div id="flash_notice"><%= escape_javascript(flash[:notice]) %></div>');
+------------------------------------------------------------------------------------------------
+<%
+=end %>
+
+
+$("#telephone_number_number").val('');
+$("#telephone_number_label").val('');
+
+

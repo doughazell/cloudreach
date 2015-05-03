@@ -1,0 +1,8 @@
+<div class="email">
+  <strong><%=h email.label %> </strong><br />
+  <%=h email.email %>
+  
+  <div class="actions">
+    <%= link_to "Destroy", email, method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+</div>

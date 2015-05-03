@@ -1,0 +1,17 @@
+<% title "Contacts" %>
+
+<% for contact in @contacts %>
+  <div class="product">
+    <h3>
+      <%= link_to h("#{contact.first_name} #{contact.last_name}"), contact %>
+    </h3>
+    <div class="actions">
+      <%= link_to "Edit", edit_contact_path(contact) %> 
+      
+      <%= link_to "Destroy", contact, method: :delete, data: { confirm: "Are you sure?" } %>
+
+    </div>
+  </div>
+<% end %>
+
+<p><%= link_to "New Contact", new_contact_path %></p>

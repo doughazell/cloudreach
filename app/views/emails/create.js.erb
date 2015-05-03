@@ -1,0 +1,17 @@
+
+$("#emails_count").html("<%= pluralize(@email.contact.emails.count, 'Email') %>");
+$("#emails").append("<%= escape_javascript(render(:partial => @email)) %>");
+
+<%
+=begin %>
+------------------------------------------------------------------------------------------------
+$("#new_email").before('<div id="flash_notice"><%= escape_javascript(flash[:notice]) %></div>');
+------------------------------------------------------------------------------------------------
+<%
+=end %>
+
+
+$("#email_email").val('');
+$("#email_label").val('');
+
+
