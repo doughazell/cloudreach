@@ -7,18 +7,23 @@ class AddressesController < ApplicationController
   def show
     @address = Address.find(params[:id])
   end
-  
+
+  # 'new_address' GET
   def new
     @address = Address.new
   end
-  
+
+  # POST
   def create
+    #puts
+    #puts "#{self.class.to_s}##{__method__.to_s}"
+    #puts
     @address = Address.create(address_params)
     
-    #flash[:notice] = "Email added to #{@email.contact.first_name} #{@email.contact.last_name}"
+    #flash[:notice] = "Address added to #{@address.contact.first_name} #{@address.contact.last_name}"
     
     respond_to do |format|
-	    format.html { redirect_to @address.contact }
+	    format.html {redirect_to @address.contact }
 	    format.js
     end
 

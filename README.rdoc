@@ -1,3 +1,50 @@
+== Rails topics included
+* ActiveRecord associations
+* CSS
+* jQuery
+* AJAX
+* RSpec (models/controllers)
+* RSpec/Capybara (features)
+* Hooking rake 'db:create' task
+
+== Rake routes
+
+                 Prefix Verb   URI Pattern                           Controller#Action
+               contacts GET    /contacts(.:format)                   contacts#index
+                        POST   /contacts(.:format)                   contacts#create
+            new_contact GET    /contacts/new(.:format)               contacts#new
+           edit_contact GET    /contacts/:id/edit(.:format)          contacts#edit
+                contact GET    /contacts/:id(.:format)               contacts#show
+                        PATCH  /contacts/:id(.:format)               contacts#update
+                        PUT    /contacts/:id(.:format)               contacts#update
+                        DELETE /contacts/:id(.:format)               contacts#destroy
+                 emails GET    /emails(.:format)                     emails#index
+                        POST   /emails(.:format)                     emails#create
+              new_email GET    /emails/new(.:format)                 emails#new
+             edit_email GET    /emails/:id/edit(.:format)            emails#edit
+                  email GET    /emails/:id(.:format)                 emails#show
+                        PATCH  /emails/:id(.:format)                 emails#update
+                        PUT    /emails/:id(.:format)                 emails#update
+                        DELETE /emails/:id(.:format)                 emails#destroy
+              addresses GET    /addresses(.:format)                  addresses#index
+                        POST   /addresses(.:format)                  addresses#create
+            new_address GET    /addresses/new(.:format)              addresses#new
+           edit_address GET    /addresses/:id/edit(.:format)         addresses#edit
+                address GET    /addresses/:id(.:format)              addresses#show
+                        PATCH  /addresses/:id(.:format)              addresses#update
+                        PUT    /addresses/:id(.:format)              addresses#update
+                        DELETE /addresses/:id(.:format)              addresses#destroy
+      telephone_numbers GET    /telephone_numbers(.:format)          telephone_numbers#index
+                        POST   /telephone_numbers(.:format)          telephone_numbers#create
+   new_telephone_number GET    /telephone_numbers/new(.:format)      telephone_numbers#new
+  edit_telephone_number GET    /telephone_numbers/:id/edit(.:format) telephone_numbers#edit
+       telephone_number GET    /telephone_numbers/:id(.:format)      telephone_numbers#show
+                        PATCH  /telephone_numbers/:id(.:format)      telephone_numbers#update
+                        PUT    /telephone_numbers/:id(.:format)      telephone_numbers#update
+                        DELETE /telephone_numbers/:id(.:format)      telephone_numbers#destroy
+                   root GET    /                                     contacts#index
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the

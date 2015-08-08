@@ -2,9 +2,7 @@ class TelephoneNumbersController < ApplicationController
   def create
 
     @telephone_number = TelephoneNumber.create(number_params)
-    
-    #flash[:notice] = "Number added to #{@email.contact.first_name} #{@email.contact.last_name}"
-    
+        
     respond_to do |format|
 	    format.html { redirect_to @telephone_number.contact }
 	    format.js
