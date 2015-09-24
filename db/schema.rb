@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502152004) do
+ActiveRecord::Schema.define(version: 20150502151850) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "first_line"
@@ -26,18 +26,11 @@ ActiveRecord::Schema.define(version: 20150502152004) do
   add_index "addresses", ["contact_id"], name: "index_addresses_on_contact_id"
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "first_name",          null: false
-    t.string   "last_name",           null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "address_id"
-    t.integer  "email_id"
-    t.integer  "telephone_number_id"
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "contacts", ["address_id"], name: "index_contacts_on_address_id"
-  add_index "contacts", ["email_id"], name: "index_contacts_on_email_id"
-  add_index "contacts", ["telephone_number_id"], name: "index_contacts_on_telephone_number_id"
 
   create_table "emails", force: :cascade do |t|
     t.string   "email"
@@ -50,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150502152004) do
   add_index "emails", ["contact_id"], name: "index_emails_on_contact_id"
 
   create_table "telephone_numbers", force: :cascade do |t|
-    t.integer  "number"
+    t.string   "number"
     t.string   "label"
     t.integer  "contact_id"
     t.datetime "created_at", null: false
