@@ -49,3 +49,5 @@ group :development, :test do
 
 end
 
+# 25/5/16 DH: Including FnordMetric railscast files
+gem 'fnordmetric'

@@ -1,7 +1,7 @@
 <div class="addresses">
-  <%=h address.first_line %>,
-  <%=h address.other_lines %>,
-  <%=h address.town %>,
+  <%=h address.first_line %><% if address.first_line.present? %>,<% end %>
+  <%=h address.other_lines %><% if address.other_lines.present? %>,<% end %>
+  <%=h address.town %><% if address.town.present? && address.postcode.present? %>,<% end %>
   <%=h address.postcode %>
   
   <div class="actions">
