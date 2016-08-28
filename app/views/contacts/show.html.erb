@@ -1,81 +1,99 @@
-<% title "#{@contact.first_name} #{@contact.last_name}" %>
+<div class="container">
+  <% title "#{@contact.first_name} #{@contact.last_name}" %>
 
-<%# ----------------------------- Address ------------------------------- %>
-<div id="address">
-  <% if @contact.address %>
-    <%= render :partial => @contact.address %>
-  <% else %>
-    <h3>Add an Address</h3>
+  <%# ----------------------------- Address ------------------------------- %>
+  <div id="address">
+    <% if @contact.address %>
+      <%= render :partial => @contact.address %>
+    <% else %>
+      <h3>Add an Address</h3>
 
-    <%= form_for Address.new(:contact => @contact) do |f| %>
-      <%= f.hidden_field :contact_id %>
+      <%= form_for Address.new(:contact => @contact) do |f| %>
+        <%= f.hidden_field :contact_id %>
+        
+        <p>
+          <%= f.label :first_line %><br />
+          <%= f.text_field :first_line %>
+        </p>
+        <p>
+          <%= f.label :other_lines %><br />
+          <%= f.text_field :other_lines %>
+        </p>
+        <p>
+          <%= f.label :town %><br />
+          <%= f.text_field :town %>
+        </p>
+        <p>
+          <%= f.label :postcode %><br />
+          <%= f.text_field :postcode %>
+        </p>
+        
+        <p><%= f.submit "Add Address" %></p>
+      <% end %>
       
-      <p>
-        <%= f.label :first_line %><br />
-        <%= f.text_field :first_line %>
-      </p>
-      <p>
-        <%= f.label :other_lines %><br />
-        <%= f.text_field :other_lines %>
-      </p>
-      <p>
-        <%= f.label :town %><br />
-        <%= f.text_field :town %>
-      </p>
-      <p>
-        <%= f.label :postcode %><br />
-        <%= f.text_field :postcode %>
-      </p>
-      
-      <p><%= f.submit "Add Address" %></p>
     <% end %>
-    
-  <% end %>
-</div>
+  </div>
 
-<br>
-<%= link_to "View All Contacts", contacts_path %>
+  <br>
+  <%= link_to "View All Contacts", contacts_path, class: 'btn btn-info'%>
 
 <%# ----------------------------- Emails ------------------------------- %>
-<h3 id="emails_count"><%= pluralize(@contact.emails.size, "Email") %></h3>
 
-<div id="emails">
-  <%= render :partial => @contact.emails %>
-</div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 id="emails_count"><%= pluralize(@contact.emails.size, "Email") %></h3>
 
-<h3>Add an Email</h3>
+      <div id="emails">
+        <%= render :partial => @contact.emails %>
+      </div>
+    </div>
 
-<%= form_for Email.new(:contact => @contact) do |f| %>
-  <%= f.hidden_field :contact_id %>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :label, "Email type" %><br />
-    <%= f.text_field :label %>
-  </p>
-  <p><%= f.submit "Add Email" %></p>
-<% end %>
+    <div class="col-md-6">    
+      <h3>Add an Email</h3>
+
+      <%= form_for Email.new(:contact => @contact) do |f| %>
+        <%= f.hidden_field :contact_id %>
+        <p>
+          <%= f.label :email %><br />
+          <%= f.text_field :email %>
+        </p>
+        <p>
+          <%= f.label :label, "Email type" %><br />
+          <%= f.text_field :label %>
+        </p>
+        <p><%= f.submit "Add Email" %></p>
+      <% end %>
+    </div>
+    
+  </div>
+
 
 <%# ----------------------------- Telephone Numbers ------------------------------- %>
-<h3 id="telephone_numbers_count"><%= pluralize(@contact.telephone_numbers.size, "Telephone Number") %></h3>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 id="telephone_numbers_count"><%= pluralize(@contact.telephone_numbers.size, "Telephone Number") %></h3>
 
-<div id="telephone_numbers">
-  <%= render :partial => @contact.telephone_numbers %>
+      <div id="telephone_numbers">
+        <%= render :partial => @contact.telephone_numbers %>
+      </div>
+    </div>
+
+    <div class="col-md-6">    
+      <h3>Add a Telephone Number</h3>
+
+      <%= form_for TelephoneNumber.new(:contact => @contact) do |f| %>
+        <%= f.hidden_field :contact_id %>
+        <p>
+          <%= f.label :number %><br />
+          <%= f.text_field :number %>
+        </p>
+        <p>
+          <%= f.label :label, "Number type" %><br />
+          <%= f.text_field :label %>
+        </p>
+        <p><%= f.submit "Add Telephone Number" %></p>
+      <% end %>
+    </div>
+  </div>
+
 </div>
-
-<h3>Add a Telephone Number</h3>
-
-<%= form_for TelephoneNumber.new(:contact => @contact) do |f| %>
-  <%= f.hidden_field :contact_id %>
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :label, "Number type" %><br />
-    <%= f.text_field :label %>
-  </p>
-  <p><%= f.submit "Add Telephone Number" %></p>
-<% end %>

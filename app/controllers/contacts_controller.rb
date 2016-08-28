@@ -9,10 +9,10 @@ class ContactsController < ApplicationController
 
     # 14/8/16 DH: Adding association flash transfer mechanism
     # (BEWARE OF CORRUPTED CONTENTS TO '@contact.flash' SINCE USING 'eval'...!!!)
-    if ! @contact.flash.empty?
+    if @contact.flash && (! @contact.flash.empty?)
       trnsFlash = eval @contact.flash
       trnsFlash.keys.each do |key|
-        flash.now[key] = trnsFlash[key]
+        flash[key] = trnsFlash[key]
       end
       @contact.flash.clear
       @contact.save!

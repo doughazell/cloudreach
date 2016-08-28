@@ -51,3 +51,10 @@ end
 
 # 25/5/16 DH: Including FnordMetric railscast files
 gem 'fnordmetric'
+
+# 16/8/16 DH: Adding Bootstrap since Spree-3.0 has converted from Skeleton to Bootstrap
+# 18/8/16 DH: 'bundle update' required...
+gem 'twitter-bootstrap-rails'
+gem 'therubyracer'
+gem 'less-rails'
+
