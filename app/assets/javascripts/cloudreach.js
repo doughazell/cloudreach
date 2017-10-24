@@ -4,7 +4,7 @@ jQuery.ajaxSetup({
 
 jQuery.fn.submitWithAjax = function() {
 	this.submit(function() {
-    //alert('submitWithAjax() in cloudreach.js');
+    alert('submitWithAjax() in cloudreach.js');
     
     //http://www.w3schools.com/jquery/ajax_post.asp
     $.post(this.action, $(this).serialize(), null, "script");

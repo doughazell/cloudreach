@@ -5,11 +5,6 @@ require 'active_support/core_ext'
 require "fnordmetric"
 require 'byebug'
 
-#trap "SIGINT" do
-#  puts "Exiting"
-#  exit 130
-#end
-
 FnordMetric.namespace :store do
   hide_active_users
 
@@ -39,12 +34,69 @@ FnordMetric.namespace :store do
 =end
   
   event :view_contact do
-#debugger
     observe :popular_contacts, data[:first_name] + " " + data[:last_name]
   end
 end
 
-FnordMetric::Web.new(port: 4242)
-FnordMetric::Worker.new
-FnordMetric.run
+# 30/8/16 DH: Solving Ctrl-C block for when Thin is started via Rack
+=begin
+---------------------------------------------------------------------------
+'~/.rvm/gems/ruby-2.2.2/gems/fnordmetric-1.2.9/lib/fnordmetric/web/web.rb':
 
+class FnordMetric::Web
+  def initialize(opts)
+    @opts = opts
+
+    @opts[:server] ||= "thin"
+    @opts[:host]   ||= "0.0.0.0"
+    @opts[:port]   ||= "4242"
+
+    FnordMetric.register(self)
+  end
+
+  def initialized
+    ...
+    Rack::Server.start(
+      :app => dispatch,
+      :server => server,
+      :Host => host,
+      :Port => port,
+
+      # 30/8/16 DH: Allowing Ctrl-C to work with Thin recent versions
+      :signals => @opts[:signals]
+    )
+  end
+end
+-------------------------------------------------------------------
+'~/.rvm/gems/ruby-2.2.2/gems/fnordmetric-1.2.9/lib/fnordmetric.rb':
+module FnordMetric
+  def self.register(obj)
+    @@pool.push(obj)
+  end
+
+  def self.run
+    start_em
+    ...
+  end
+
+  def self.start_em
+    EM.run do
+
+      trap("TERM", &method(:shutdown))
+      trap("INT",  &method(:shutdown))
+
+      EM.next_tick do
+        (@@pool || []).map(&:initialized)
+      end
+
+    end
+  end
+end
+-------------------------------------------------------------------
+=end
+
+#FnordMetric::Web.new(port: 4242)
+FnordMetric::Web.new(port: 4242, signals: false)
+
+FnordMetric::Worker.new
+FnordMetric.run()

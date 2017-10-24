@@ -4,7 +4,7 @@ class EmailsController < ApplicationController
     @email = Email.create(email_params)
     
     #flash[:notice] = "Email added to #{@email.contact.first_name} #{@email.contact.last_name}"
-    
+
     respond_to do |format|
 	    format.html { redirect_to @email.contact }
 	    format.js

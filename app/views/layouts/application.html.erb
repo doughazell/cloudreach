@@ -35,7 +35,12 @@
         <%= drop_down "Contacts" do %>
             <%= menu_item "New", new_contact_path %>
             <%= drop_down_divider %>
-            <%= menu_item "First Contact", contact_path( Contact.first )%>
+            
+<%# 23/10/17 DH: Added to prevent 'No route matches {:action=>"show", :controller=>"contacts", :id=>nil}' for empty DB, ie RSpec tests %>
+            <% if Contact.first %>
+              <% menu_item "First Contact", contact_path( Contact.first )%>
+            <% end %>
+            
         <% end %>
       <% end %>
     <% end %>
