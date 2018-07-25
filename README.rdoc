@@ -1,7 +1,7 @@
 == Running app
-1 $ redis-server /usr/local/etc/redis.conf
-2 $ ruby fnordmetric_app.rb
-3 $ rails s
+1. $ redis-server /usr/local/etc/redis.conf
+2. $ ruby fnordmetric_app.rb
+3. $ rails s
 
 == Rails topics included
 * ActiveRecord associations
