@@ -63,6 +63,9 @@ class FnordMetric::Web
       :Port => port,
 
       # 30/8/16 DH: Allowing Ctrl-C to work with Thin recent versions
+      # 27/7/18 DH: If 'FnordMetric::Web.new(...,signals: false)' then Thin won't catch the INT signal 
+      #             (thin-1.7.0/lib/thin/server.rb:136)
+      #             and it will propagate to the FnordMetric Rack wrapper
       :signals => @opts[:signals]
     )
   end
