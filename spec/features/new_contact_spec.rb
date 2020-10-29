@@ -15,19 +15,30 @@ describe 'new_contact' do
   end
   
   it "can add new email to contact details" do |example|
-
+    #puts "\n\n--TEST--\n\"#{example.description}\" <<."
+    
     Capybara.current_driver = :webkit
     Capybara.javascript_driver = :webkit
 
     visit "/"
-        
+    
+    sleep 1
+    
     expect(page).to have_content 'Contacts'
+    #puts "\nAdding new contact in \"#{example.description}\""
     click_link 'New Contact'
+    
+    sleep 1
+    
     expect(page).to have_content 'New Contact'
     
     fill_in('contact_first_name', :with => 'Doug')
-    fill_in('contact_last_name', :with => 'Hazell') 
+    fill_in('contact_last_name', :with => 'Hazell')
+    puts "\nSubmitting new contact in \"#{example.description}\""
     click_button 'Submit'
+    
+    sleep 1
+    
     expect(page).to have_content 'Successfully created contact'
     expect(page).to have_content 'Doug Hazell'
     

@@ -18,8 +18,10 @@ class ContactsController < ApplicationController
       @contact.save!
     end
     
+    puts "\nRegistering FnordMetric event in '#{self}.#{__method__.to_s}'"
     # 26/5/16 DH: Adding in FnordMetric
     FNORD_METRIC.event(@contact.attributes.merge(_type: :view_contact))
+    puts "...done"
   end
   
   def new
